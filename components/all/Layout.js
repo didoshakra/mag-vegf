@@ -5,7 +5,6 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic"; //https://web.dev/code-splitting-with-dynamic-imports-in-nextjs/
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //fontawesome
 // import Header from "./mag_stan/Header";
 import HeaderTape from "../mag/HeaderTape";
 // import Head0 from "../mag/Head0";
