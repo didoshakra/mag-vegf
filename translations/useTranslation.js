@@ -11,7 +11,7 @@ export default function useTranslation() {
   const { locale } = state;
   // console.log("000/ useTranslation.js/locale=", locale);
 
-  //**** Визначення файлу перекладу ********************************/
+  //**** 1Визначення файлу перекладу ********************************/
   // const req = require.context("./mag_veg", false, /.*\.js$/); //папка файлу перекладу
   // console.log("useTranslation.js/req=", req);
   // const appt = `./${app}.js`;//змінна що визначає файл перекладу
