@@ -1,6 +1,6 @@
 //Header.js
 //20200416-добавляю 2-а діва (для верхньої стрічки-HeaderTape і нажнього випадаючого на весь екран MobileMenu)
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import HeaderLogo from "./HeaderLogo";
 import { ComponentContext } from "../../context/ComponentContext";
@@ -21,8 +21,8 @@ const Header = () => {
   const heightHeaderTape = "24px"; //Висота header0
   const heightHeader = "64px"; //Висота header0
   const headerNone = "-96px"; //Сховати
-  const [headerTop, setHeaderTop] = React.useState(heightHeaderTape); //-відступ зверху/ щоб ховалась /появлялась Head при скролі
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [headerTop, setHeaderTop] = useState(heightHeaderTape); //-відступ зверху/ щоб ховалась /появлялась Head при скролі
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const mobileMenuToggle = (arg) => {
     setMobileMenuOpen(arg);
@@ -110,20 +110,13 @@ const Header = () => {
           {/* Навігація */}
           <HeaderMenu menu={menu} />
           {/* іконка мобільного меню/faList/ */}
-          <MobileMenuIcon
-            mobileMenuOpen={mobileMenuOpen}
-            mobileMenuToggle={mobileMenuToggle}
-          />
+          <MobileMenuIcon mobileMenuOpen={mobileMenuOpen} mobileMenuToggle={mobileMenuToggle} />
           {/* Налаштування(App,Теми,Мови)*/}
           <HeaderSeting />
         </div>
       </div>
       {/* Список мобильного меню */}
-      <MobileMenuDroop
-        menu={menu}
-        mobileMenuOpen={mobileMenuOpen}
-        mobileMenuToggle={mobileMenuToggle}
-      />
+      <MobileMenuDroop menu={menu} mobileMenuOpen={mobileMenuOpen} mobileMenuToggle={mobileMenuToggle} />
       <style jsx>{`
         .header-section {
           position: relative;

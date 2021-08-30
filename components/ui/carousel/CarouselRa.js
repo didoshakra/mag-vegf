@@ -1,10 +1,8 @@
 //CarouselRa.js  на основі //CarouselAn.js //https://habr.com/ru/post/467079/
+
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //fontawesome
-import {
-  faQuoteLeft,
-  faChevronRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { faQuoteLeft, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import IconArrowRight from "../icons/IconArrowRight";
 import IconArrowLeft from "../icons/IconArrowLeft";
 
@@ -83,16 +81,11 @@ const CarouselRa = (props) => {
 
   //Визначення ширини вікна браузера //https://dev.to/3sanket3/usewindowsize-react-hook-to-handle-responsiveness-in-javascript-3dcl
   const isWindowClient = typeof window === "object";
-  const [windowSize, setWindowSize] = React.useState(
-    isWindowClient ? window.innerWidth : undefined
-  );
+  const [windowSize, setWindowSize] = useState(isWindowClient ? window.innerWidth : undefined);
   const elemAll = parListSlides.length; //Величина масиву слайдів(даних)
   //*Змінні з параметрів
-  const [parametrs, setParametrs] = React.useState({
-    visiElement:
-      windowSize < 600
-        ? parVisibleElementsMobi
-        : Math.min(parVisibleElements, elemAll),
+  const [parametrs, setParametrs] = useState({
+    visiElement: windowSize < 600 ? parVisibleElementsMobi : Math.min(parVisibleElements, elemAll),
     parDots: windowSize < 600 ? parDotsMobi : parDots,
     parDotsIn: windowSize < 600 ? parDotsInMobi : parDotsIn,
     parArrows: windowSize < 600 ? parArrowsMobi : parArrows,
@@ -104,7 +97,7 @@ const CarouselRa = (props) => {
   );
 
   //*робочі змінні
-  const [workVares, setWorkVares] = React.useState({
+  const [workVares, setWorkVares] = useState({
     first: true, //Щоб при вході не перекидало на 1 позицію
     actElement: 0,
     transitionCss: `transform ${parSpeed} sease`,
@@ -112,12 +105,12 @@ const CarouselRa = (props) => {
   });
 
   //*змінні для Точ Екранів (x,y)//https://www.linkedin.com/pulse/touch-detection-react-daniel-paschal/
-  const [touchStartLocation, setTouchStartLocation] = React.useState({
+  const [touchStartLocation, setTouchStartLocation] = useState({
     x: 0,
     y: 0,
   });
   //*змінні для перетягування https://habr.com/ru/post/463463/
-  const [dragPozocion, setDragPozocion] = React.useState({
+  const [dragPozocion, setDragPozocion] = useState({
     startX: 0,
     startY: 0,
     // deltaXpx: "0px",
@@ -182,8 +175,7 @@ const CarouselRa = (props) => {
           className="ra-dot"
           style={{
             backgroundColor:
-              index == workVares.actElement ||
-              (index == 0 && workVares.actElement == elemAll)
+              index == workVares.actElement || (index == 0 && workVares.actElement == elemAll)
                 ? parDotsActiveColor
                 : parDotsBackgroundColor,
             cursor: index == 0 ? "default" : "pointer",
@@ -233,7 +225,7 @@ const CarouselRa = (props) => {
     renderDots(); //Пересвітка ативності Dots
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     // обробник, який буде викликаний при зміні розміру екрана
     function setSize() {
       setWindowSize(window.innerWidth); //👈
@@ -263,7 +255,7 @@ const CarouselRa = (props) => {
     }
   }, [isWindowClient, setWindowSize]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     //Запуск таймера автоматичної прокрутки слайдів
     if (parAuto) {
       const timer = setTimeout(() => {
@@ -273,7 +265,7 @@ const CarouselRa = (props) => {
     }
   }, [arrowRight]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     //Для зациклювання прокрутки вправо
     if (workVares.actElement == 0 && !workVares.first && !parAuto) {
       setWorkVares({
@@ -284,7 +276,7 @@ const CarouselRa = (props) => {
     }
   }, [workVares.actElement]);
 
-  // React.useEffect(() => {
+  // useEffect(() => {
   //   //Рух пальцем по екрані прослуховування подій
   //   !!! Працює але краще <div onTouchStart і onTouchEnd>
   //
@@ -366,22 +358,12 @@ const CarouselRa = (props) => {
         {renderList()}
       </ul>
       <div className="ra-carousel_arrow-left" onClick={arrowLeft}>
-        {parametrs.parArrows ? (
-          <IconArrowLeft width={"32"} color={"red"} />
-        ) : (
-          ""
-        )}
+        {parametrs.parArrows ? <IconArrowLeft width={"32"} color={"red"} /> : ""}
       </div>
       <div className="ra-carousel_arrow-right" onClick={arrowRight}>
-        {parametrs.parArrows ? (
-          <IconArrowRight width={"32"} color={"red"} />
-        ) : (
-          ""
-        )}
+        {parametrs.parArrows ? <IconArrowRight width={"32"} color={"red"} /> : ""}
       </div>
-      <div className="ra-carousel_dots-in">
-        {parametrs.parDotsIn ? renderDots() : ""}
-      </div>
+      <div className="ra-carousel_dots-in">{parametrs.parDotsIn ? renderDots() : ""}</div>
       {/* </div> */}
       <div div className="ra-carousel_dots">
         {parametrs.parDots ? renderDots() : ""}
@@ -517,9 +499,7 @@ const CarouselRa = (props) => {
           display: flex;
           justify-content: flex-start;
           //border: 2px solid #82ae46;
-          transform: translateX(
-            calc(100% / ${parametrs.visiElement}* ${workVares.actElement}*-1)
-          );
+          transform: translateX(calc(100% / ${parametrs.visiElement}* ${workVares.actElement}*-1));
           transition: ${workVares.transitionCss};
           cursor: grab;
         }

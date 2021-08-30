@@ -1,6 +1,6 @@
 //BestPrice.js
 
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ComponentContext } from "../../../context/ComponentContext";
 
 const BestPrice = () => {
@@ -24,9 +24,9 @@ const BestPrice = () => {
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -37,10 +37,7 @@ const BestPrice = () => {
       <div className="best-price__context">
         <span className="best-price__subheading">Best Price For You</span>
         <h2 className="best-price__dial">Deal of the day</h2>
-        <p>
-          Far far away, behind the word mountains, far from the countries
-          Vokalia and Consonantia
-        </p>
+        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
         <h3>
           <a href="#">Spinach</a>
         </h3>

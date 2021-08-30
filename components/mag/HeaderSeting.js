@@ -1,7 +1,7 @@
 //HeaderSeting
 //Зміна мови і теми+ App меню
 
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { ComponentContext } from "../../context/ComponentContext";
 import HeaderSetingDroop from "./HeaderSetingDroop";
 import ThemeSwitcher from "../all/ThemeSwitcher";
@@ -10,7 +10,7 @@ import LocaleSwitcherIcon from "../all/LocaleSwitcherIcon";
 const HeaderSeting = () => {
   const { state } = useContext(ComponentContext);
   const theme = state.theme;
-  // const [drawerOpen, setDrawerOpen] = React.useState(false);
+  // const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="headerSeting">

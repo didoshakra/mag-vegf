@@ -1,7 +1,7 @@
 //Drawer.js
 //Для кожного APP інший
 
-import React, { useContext, useRef, useEffect } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ const Drawer = () => {
   const { locale, t } = useTranslation();
   const { state } = useContext(ComponentContext);
   const { theme } = state;
-  const [drawerMenuOpen, setDrawerMenuOpen] = React.useState(false);
+  const [drawerMenuOpen, setDrawerMenuOpen] = useState(false);
 
   //Для клацання поза обєктом
   //Добавити в контрольований об'єкт-(ref={wrapperRef})- (<ul ref={wrapperRef}... )
@@ -92,16 +92,8 @@ const Drawer = () => {
   return (
     <div ref={wrapperRef} className="drawer">
       {/* іконка App */}
-      <a
-        className="drawer_icon"
-        title={t("headerMenu_iconTitleDrawer")}
-        onClick={drawerMenuToggle}
-      >
-        {drawerMenuOpen ? (
-          <FontAwesomeIcon icon={faTimes} />
-        ) : (
-          <FontAwesomeIcon icon={faBars} />
-        )}
+      <a className="drawer_icon" title={t("headerMenu_iconTitleDrawer")} onClick={drawerMenuToggle}>
+        {drawerMenuOpen ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
       </a>
       <ul className="drawer_dropdown">{renderMenu()}</ul>
       <style jsx global>
@@ -147,9 +139,7 @@ const Drawer = () => {
           background: ${theme.colors.headBackground};
           //border: 2px solid ${theme.colors.headIcon}; /* Параметры границы */
           //border-radius: 45px; /* Радіус*/
-          border: ${theme.colors.headIconBorderWidht} ${
-        theme.colors.headIconBorderStyle
-      } ${theme.colors.headIcon}; /* Параметры границы */
+          border: ${theme.colors.headIconBorderWidht} ${theme.colors.headIconBorderStyle} ${theme.colors.headIcon}; /* Параметры границы */
           border-radius: 36px; /* Радіус*/
           width: 36px;
           height: 36px;
@@ -187,9 +177,7 @@ const Drawer = () => {
           height: 250px;
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           position: absolute;
-          transform: ${
-            drawerMenuOpen ? "translate(100%,100%)" : "translate(0px,0px)"
-          };
+          transform: ${drawerMenuOpen ? "translate(100%,100%)" : "translate(0px,0px)"};
           transition: transform 0.5s linear;
           z-index: -1;
           background: ${theme.colors.headMenuBackground};
@@ -201,7 +189,7 @@ const Drawer = () => {
           overflow: hidden; //Обрізаєм все, що не влізає в область */
           border: 0 0 5px 5px;
           border-radius: 0 0 5px 5px;
-          padding: 0 0 5px 0;//Щоб зробити заокруглення (border-radius)
+          padding: 0 0 5px 0; //Щоб зробити заокруглення (border-radius)
           margin: 0;
           left: 0px;
           top: 50px;

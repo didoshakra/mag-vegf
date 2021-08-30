@@ -5,7 +5,7 @@
 //https://blog.logrocket.com/use-hooks-and-context-not-react-and-redux/
 //Тільки 2-і теми(themeTypeLight)
 
-import React, { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { isLocale } from "../translations/helpes";
@@ -54,7 +54,7 @@ export const ThemeProvider = ({ children }) => {
   // console.log("+++1/ ComponentContext.js/query=", query);
   // console.log("+++2/ ComponentContext.js/locale=", locale);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const localSetting = localStorage.getItem("locale"); //інформація про останнє локале
     // console.log(
     //   "+++3/ ComponentContext.js/useEffect/localStorage.localSetting=",
@@ -76,15 +76,11 @@ export const ThemeProvider = ({ children }) => {
     // );
   }, [state.locale]); // виконується тільки при зміні locale
 
-  React.useEffect(() => {
+  useEffect(() => {
     //query.lang-значення роутера яке передалося як [lang]/може бути query.lamp якщо папку назвем [lamp]
     // Міняємо locale в LocaleContext  Якщо локаль в[] змінилася і вона є в сиску локалів(config.js)
     //isLocale() - провіряє чи є в списку доступних локалів
-    if (
-      typeof query.lang === "string" &&
-      -isLocale(query.lang) &&
-      state.locale !== query.lang
-    ) {
+    if (typeof query.lang === "string" && -isLocale(query.lang) && state.locale !== query.lang) {
       // setLocale(query.lang);//Змінюємо state.locale
       dispatch({ type: "LOCALE", payload: query.lang }); //Змінюємо state.locale
     }

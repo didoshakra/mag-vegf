@@ -1,14 +1,9 @@
 //HeaderSetingDroop.js
 //Випадаюче шестерня меню без  menuList
 
-import React, { useContext, useRef, useEffect } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMoon,
-  faSun,
-  faGlobe,
-  faCog,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSun, faGlobe, faCog } from "@fortawesome/free-solid-svg-icons";
 import { ComponentContext } from "../../context/ComponentContext";
 import useTranslation from "../../translations/useTranslation";
 import LocaleSwitcherDroop from "../all/LocaleSwitcherDroop";
@@ -17,9 +12,9 @@ const HeaderSetingDroop = () => {
   const { t } = useTranslation();
   const { state, dispatch } = useContext(ComponentContext);
   const { theme, themeTypeLight } = state;
-  const [setingMenuOpen, setSetingMenuOpen] = React.useState(false);
-  const [appMenuOpen, setAppMenuOpen] = React.useState(false);
-  const [langMenuOpen, setLangMenuOpen] = React.useState(false);
+  const [setingMenuOpen, setSetingMenuOpen] = useState(false);
+  const [appMenuOpen, setAppMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
   //Для клацання поза обєктом
   const wrapperRef = useRef(null); //Для клацання поза обєктом
   useOutsideAlerter(wrapperRef); //Для клацання поза обєктом
@@ -108,23 +103,14 @@ const HeaderSetingDroop = () => {
       {/* {appMenuOpen ? <HeaderAppMenu /> : ""} */}
       {/* список головного меню */}
       <ul className="headerSetingDroop__dropdown">
-        <li
-          className="headerSetingDroop__dropdown__item"
-          onClick={themeMenuToggle}
-        >
+        <li className="headerSetingDroop__dropdown__item" onClick={themeMenuToggle}>
           <FontAwesomeIcon icon={themeTypeLight ? faSun : faMoon} />
           {/* <a className="headerSetingDroop__dropdown__item__a">Теми</a> */}
           <a>Теми</a>
         </li>
-        <li
-          className="headerSetingDroop__dropdown__item"
-          onClick={langMenuOpenToggle}
-        >
+        <li className="headerSetingDroop__dropdown__item" onClick={langMenuOpenToggle}>
           {/* // Від цього об'єкту відразовуються відступи в випадаючих меню  */}
-          <LocaleSwitcherDroop
-            langMenuOpen={langMenuOpen}
-            setLangMenuOpen={setLangMenuOpen}
-          />
+          <LocaleSwitcherDroop langMenuOpen={langMenuOpen} setLangMenuOpen={setLangMenuOpen} />
           <FontAwesomeIcon icon={faGlobe} />
           {/* <a className="headerSetingDroop__dropdown__item__a">Мови</a> */}
           <a>Мови</a>
@@ -144,8 +130,7 @@ const HeaderSetingDroop = () => {
           justify-content: center;
           color: ${theme.colors.headMobileIcon};
           background: ${theme.colors.headMobileBackground};
-          border: ${theme.colors.headIconBorderWidht}
-            ${theme.colors.headIconBorderStyle} ${theme.colors.headIcon};
+          border: ${theme.colors.headIconBorderWidht} ${theme.colors.headIconBorderStyle} ${theme.colors.headIcon};
           border-radius: 36px;
           width: 36px;
           height: 36px;

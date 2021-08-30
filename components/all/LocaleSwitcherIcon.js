@@ -1,7 +1,7 @@
 //LocaleSwitcherIcon.js //
 //Іконка мови окремо (випадаючий список викликається)
 
-import React, { useContext, useRef, useEffect } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { ComponentContext } from "../../context/ComponentContext";
@@ -12,7 +12,7 @@ const LocaleSwitcherIcon = () => {
   const { t } = useTranslation();
   const { state } = useContext(ComponentContext);
   const { theme } = state;
-  const [langMenuOpen, setLangMenuOpen] = React.useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
 
   //***Для клацання поза обєктом
   const wrapperRef = useRef(null); //Для клацання поза обєктом
@@ -58,10 +58,7 @@ const LocaleSwitcherIcon = () => {
         <FontAwesomeIcon icon={faGlobe} title={t("localeSwitcher_title")} />
       </a>
       {/* Випадаюче меню */}
-      <LocaleSwitcherDroop
-        langMenuOpen={langMenuOpen}
-        setLangMenuOpen={setLangMenuOpen}
-      />
+      <LocaleSwitcherDroop langMenuOpen={langMenuOpen} setLangMenuOpen={setLangMenuOpen} />
       <style jsx>{`
         .localeSwitcherIcon {
           position: relative;

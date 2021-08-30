@@ -1,4 +1,5 @@
 //Timer.js //https://www.digitalocean.com/community/tutorials/react-countdown-timer-react-hooks
+import { useState, useEffect } from "react";
 
 const Timer = () => {
   const calculateTimeLeft = () => {
@@ -16,7 +17,7 @@ const Timer = () => {
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   const timerComponents = [];
 
@@ -32,7 +33,7 @@ const Timer = () => {
     );
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);

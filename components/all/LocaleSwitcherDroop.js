@@ -1,7 +1,7 @@
 //LocaleSwitcherDroop.js
 //Саме випадаюче меню мови
 
-import React, { useContext, useRef, useEffect } from "react";
+import { useCallback, useContext, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import { locales, localesList } from "../../translations/config";
 import { ComponentContext } from "../../context/ComponentContext";
@@ -13,18 +13,15 @@ const LocaleSwitcherDroop = (props) => {
   const { theme, locale } = state;
   // console.log("LocaleSwitcherDroop/props.langMenuOpen=", props.langMenuOpen);
 
-  //Зміна locfle/ React.useCallback!!!???
-  const handleLocaleChange = React.useCallback(
+  //Зміна locfle/ useCallback!!!???
+  const handleLocaleChange = useCallback(
     (e) => {
       props.setLangMenuOpen(false); //Закриваєм меню
       //langMenuToggle(); //Закриває меню
       const newLocale = localesList[e.currentTarget.dataset.index].loc;
       // console.log("LocaleSwitcher.js/newLocale=", newLocale);
       const regex = new RegExp(`^/(${locales.join("|")})`);
-      router.push(
-        router.pathname,
-        router.asPath.replace(regex, `/${newLocale}`)
-      );
+      router.push(router.pathname, router.asPath.replace(regex, `/${newLocale}`));
     },
     [router]
   );
@@ -35,18 +32,12 @@ const LocaleSwitcherDroop = (props) => {
         <li
           data-index={index} //data-ХХ->Для передачі даних в e.currentTarget.dataset.XX
           className={
-            item.loc === locale
-              ? "localeSwitcherDroop__menu__item--active"
-              : "localeSwitcherDroop__menu__item"
+            item.loc === locale ? "localeSwitcherDroop__menu__item--active" : "localeSwitcherDroop__menu__item"
           }
           onClick={handleLocaleChange}
         >
           <a className="localeSwitcherDroop__menu__item-a">{item.loc}</a>
-          <img
-            className="localeSwitcherDroop__menu__item-a"
-            src={item.flag}
-            alert="flag"
-          />
+          <img className="localeSwitcherDroop__menu__item-a" src={item.flag} alert="flag" />
           <a className="localeSwitcherDroop__menu__item-a">{item.name}</a>
         </li>
       );

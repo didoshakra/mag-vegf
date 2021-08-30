@@ -1,10 +1,10 @@
 //fajka
-import React from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import { getInitialLocale } from "../translations/getInitialLocale";
 
 const Index = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     // console.log("=*=* 1 pages/index.js/useEffect/");
     const glocale = getInitialLocale();
     // console.log("=*=* 2 pages/index.js/useEffect/glocale=", glocale);
