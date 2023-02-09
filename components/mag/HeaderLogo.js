@@ -13,7 +13,7 @@ const HeaderLogo = () => {
 
   return (
     <div className="headerLogo">
-      <Link href="/[lang]" as={`/${locale}`}>
+      <Link href="/[lang]" as={`/${locale}`} legacyBehavior>
         <a title={t("logo_logoTitle")} className="headerLogo__text">
           VEGEFOODS
           {/* {t("logo_siteName")} */}
@@ -53,6 +53,6 @@ const HeaderLogo = () => {
         }
       `}</style>
     </div>
-  );
+  )
 };
 export default HeaderLogo;

@@ -56,12 +56,12 @@ const MobileMenuDroop = (props) => {
     return props.menu.map((item, index) => {
       return (
         <li className="mobileMenuDroop__dropdown__item" key={index}>
-          <Link href={`/[lang]${item.link}`} as={`/${locale}${item.link}`}>
+          <Link href={`/[lang]${item.link}`} as={`/${locale}${item.link}`} legacyBehavior>
             {/* <p className="g-nav__item-a">{item.a}</p> */}
             <a>{item.a}</a>
           </Link>
         </li>
-      );
+      )
     });
   };
 

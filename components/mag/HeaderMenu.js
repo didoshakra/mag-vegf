@@ -18,12 +18,12 @@ const HeaderMenu = (props) => {
     return props.menu.map((item, index) => {
       return (
         <li className="headerMenu__menu__item--goriz" key={index}>
-          <Link href={`/[lang]${item.link}`} as={`/${locale}${item.link}`}>
+          <Link href={`/[lang]${item.link}`} as={`/${locale}${item.link}`} legacyBehavior>
             {/* <a className="g-nav__item-a">{item.a}</a> */}
             <a>{item.a}</a>
           </Link>
         </li>
-      );
+      )
     });
   };
 

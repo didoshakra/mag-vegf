@@ -82,7 +82,7 @@ const Drawer = () => {
         <li className="drawer_item">
           <Link href={`/[lang]${item.link}`} as={`/${locale}${item.link}`}>
             {/* <a className="g-nav__item-a">{item.a}</a> */}
-            <a>{item.a}</a>
+            {item.a}
           </Link>
         </li>
       );

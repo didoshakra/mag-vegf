@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 // import { ComponentContext } from "../../../context/ComponentContext";
 //import IconFreeShiping from "../../ui/icons/IconFreeShiping";
 import IconFreeShipingBant from "../../ui/icons/IconFreeShipingBant";
-import IconVegetable from "../../ui/icons/IconVegetable";
+// import IconVegetable from "../../ui/icons/IconVegetable";
 import IconSupport from "../../ui/icons/IconSupport";
 // import IconHightQuality from "../../ui/icons/IconHightQuality";
 import IconSuperiorQuality from "../../ui/icons/IconSuperiorQuality";
@@ -34,7 +34,7 @@ const Services = () => {
       <div className="servises__item">
         <div className="servises__item__icon bg-color-2">
           <div className="servises__item__icon__circle">
-            <IconVegetable width="50" height="50" color="#fff" color1="#fff" />
+            {/* <IconVegetable width="50" height="50" color="#fff" color1="#fff" /> */}
           </div>
         </div>
         <div className="servises__item__body">

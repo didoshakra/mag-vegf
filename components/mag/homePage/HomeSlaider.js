@@ -28,6 +28,7 @@ const HomeSlaider = () => {
             //ніби посилання на Докладніше
             href={`/[lang]/examples/flexbox`}
             as={`/${locale}/examples/flexbox`}
+            legacyBehavior
           >
             <a
               className="button"
@@ -63,7 +64,7 @@ const HomeSlaider = () => {
         </div>
       </div>
       <style jsx>{`
-      .home-slider-section {
+        .home-slider-section {
           position: relative;
           height: 650px;
         }
@@ -85,8 +86,8 @@ const HomeSlaider = () => {
           bottom: 0;
           left: 0;
           right: 0;
-          align-items:center;
-          justify-content:center;
+          align-items: center;
+          justify-content: center;
           height: 650px;
           background-size: cover; //Маштабує зображення.
           background-repeat: no-repeat;
@@ -110,14 +111,13 @@ const HomeSlaider = () => {
           100% {
             opacity: 0;
           }
-        from {
+          from {
             //transform: scale(1.05);
-          z-index:1  //Для видимості button
-
+            z-index: 1; //Для видимості button
           }
           to {
             //transform: scale(1);
-            z-index:0 //Для видимості button
+            z-index: 0; //Для видимості button
           }
         }
         .overlay {
@@ -138,10 +138,8 @@ const HomeSlaider = () => {
           justify-content: center; //X-горизонтально
           flex-direction: column; //в стовбець
           text-align: center;
-          height: 650px;//Треба
+          height: 650px; //Треба
         }
-
-
 
         .slider-text h1 {
           font-size: 40px;
@@ -154,10 +152,10 @@ const HomeSlaider = () => {
         @media (min-width: 960px) {
           .slider-text h1 {
             font-size: 8vw;
-          color: white;
+            color: white;
           }
         }
-         .subheading {
+        .subheading {
           color: black;
           font-weight: 300;
           font-size: 12px;
@@ -182,18 +180,18 @@ const HomeSlaider = () => {
           border: 2px solid #82ae46;
           border-radius: 20px;
           font-family: ${theme.fontFamily.sansSerif};
-           font-size: 16px;
+          font-size: 16px;
           text-decoration: none;
           //z-index: 100;
         }
         .button:hover {
-          background-color:rgba(132,177,71,.3);
+          background-color: rgba(132, 177, 71, 0.3);
           border: 1px solid #fff;
           //border: 1px solid rgba(42,66,10,1);
           // cursor: ${disabled ? "not-allowed" : "pointer"};
         }
       `}</style>
     </section>
-  );
+  )
 };
 export default HomeSlaider;
